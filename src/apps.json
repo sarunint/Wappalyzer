@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "apps": {
     "1&1": {
       "cats": [
@@ -97,6 +98,14 @@
       ],
       "icon": "ebis.png",
       "website": "http://www.ebis.ne.jp"
+    },
+    "Accelerated Mobile Pages": {
+      "cats": [
+        "12"
+      ],
+      "html": "<html[^>]* (?:amp|⚡)",
+      "icon": "Accelerated-Mobile-Pages.svg",
+      "website": "https://www.ampproject.org"
     },
     "Amber": {
       "cats": [
@@ -598,7 +607,7 @@
         "ngMaterial": ""
       },
       "icon": "Angular.svg",
-      "implies": "AngularJS",
+      "implies": "Angular",
       "script": [
         "/([\\d.]+(?:\\-?rc[.\\d]*)*)/angular-material(?:\\.min)?\\.js\\;version:\\1",
         "angular-material.*\\.js"
@@ -609,25 +618,33 @@
       "cats": [
         "12"
       ],
+      "html": "<app[^>]+ng-version=\"([\\d.]+)\">\\;version:\\1",
+      "icon": "Angular.svg",
+      "website": "https://angular.io"
+    },
+    "AngularJS": {
+      "cats": [
+        "12"
+      ],
       "js": {
         "angular": "",
         "angular.version.full": "(.*)\\;version:\\1"
       },
-      "html": "<[^>]+ ng-version=\"([\\d.]+)\">\\;version:\\1",
+      "html": "<[^>]+ ng-version=\"([\\d.]+)\">\\;version:\\1"
       "icon": "Angular.svg",
       "script": [
         "angular(?:\\-|\\.)([\\d.]*\\d)[^/]*\\.js\\;version:\\1",
         "/([\\d.]+(?:\\-?rc[.\\d]*)*)/angular(?:\\.min)?\\.js\\;version:\\1",
         "angular.*\\.js"
       ],
-      "website": "http://angular.io"
+      "website": "https://angularjs.org"
     },
     "Apache": {
       "cats": [
         "22"
       ],
       "headers": {
-        "Server": "(?:Apache(?:$|/([\\d.]+)|[^/-])|(?:^|\b)HTTPD)\\;version:\\1"
+        "Server": "(?:Apache(?:$|/([\\d.]+)|[^/-])|(?:^|\\b)HTTPD)\\;version:\\1"
       },
       "icon": "Apache.svg",
       "website": "http://apache.org"
@@ -666,7 +683,7 @@
       ],
       "headers": {
         "Server": "^Apache-Coyote(/1\\.1)?$\\;version:\\1?4.1+:",
-        "X-Powered-By": "\bTomcat\b(?:-([\\d.]+))?\\;version:\\1"
+        "X-Powered-By": "\\bTomcat\\b(?:-([\\d.]+))?\\;version:\\1"
       },
       "icon": "Apache Tomcat.svg",
       "implies": "Java",
@@ -1190,7 +1207,7 @@
       ],
       "html": [
         "(?:<!--|<BR>)Copyright\\(C\\) [\\d-]+ Brother Industries",
-        "<TITLE>\n\\s*BROTHER "
+        "<TITLE>\\n\\s*BROTHER "
       ],
       "icon": "Brother.png",
       "website": "http://www.brother.com"
@@ -1246,7 +1263,16 @@
       "cats": [
         "13"
       ],
-      "html": "href=\"enter_bug\\.cgi\">",
+      "html": [
+				"href=\"enter_bug\\.cgi\">",
+				"<main id=\"bugzilla-body\""
+			],
+			"meta": {
+				"generator":"Bugzilla ?([\\d.]+)?\\;version:\\1"
+			},
+      "js": {
+        "BUGZILLA": ""
+      },
       "icon": "Bugzilla.png",
       "implies": "Perl",
       "website": "http://www.bugzilla.org"
@@ -1984,7 +2010,7 @@
       ],
       "headers": {
         "Set-Cookie": "^CraftSessionId=",
-        "X-Powered-By": "^Craft CMS$"
+        "X-Powered-By": "\\bCraft CMS\\b"
       },
       "icon": "Craft CMS.svg",
       "implies": "Yii",
@@ -3132,7 +3158,7 @@
         "FTB_API": "",
         "FTB_AddEvent": ""
       },
-      "html": "/<!--\\s*\\*\\s*FreeTextBox v\\d+ \\(([.\\d]+)(?:(?:.|\n)+?<!--\\s*\\*\\s*License Type: (Distribution|Professional)License)?/i\\;version:\\1 \\2",
+      "html": "/<!--\\s*\\*\\s*FreeTextBox v\\d+ \\(([.\\d]+)(?:(?:.|\\n)+?<!--\\s*\\*\\s*License Type: (Distribution|Professional)License)?/i\\;version:\\1 \\2",
       "icon": "FreeTextBox.png",
       "implies": "Microsoft ASP.NET",
       "website": "http://freetextbox.com"
@@ -3231,7 +3257,7 @@
       "icon": "Gatsby.svg",
       "implies": [
         "React",
-        "Webpack"
+        "webpack"
       ],
       "website": "https://www.gatsbyjs.org/"
     },
@@ -3455,7 +3481,7 @@
         "Set-Cookie": "i_like_gogits="
       },
       "html": [
-        "<div class=\"ui left\">\n\\s+© \\d{4} Gogs Version: ([\\d.]+) Page:\\;version:\\1",
+        "<div class=\"ui left\">\\n\\s+© \\d{4} Gogs Version: ([\\d.]+) Page:\\;version:\\1",
         "<button class=\"ui basic clone button\" id=\"repo-clone-ssh\" data-link=\"gogs@"
       ],
       "icon": "gogs.png",
@@ -3599,7 +3625,7 @@
         "Set-Cookie": "cnv_session"
       },
       "icon": "CNV.png",
-      "implies": "laravel",
+      "implies": "Laravel",
       "website": "https://cnv.vn"
     },
     "Google Tag Manager": {
@@ -3827,7 +3853,7 @@
         "22"
       ],
       "headers": {
-        "Server": "(?:^|[^-])\bHTTP-Server(?: ?/?V?([\\d.]+))?\\;version:\\1"
+        "Server": "(?:^|[^-])\\bHTTP-Server(?: ?/?V?([\\d.]+))?\\;version:\\1"
       },
       "website": "http://example.com"
     },
@@ -4082,7 +4108,7 @@
       "headers": {
         "Set-Cookie": "_hybris"
       },
-      "html": "<[^>]+/(?:sys_master|hybr|_ui/(?:desktop|common/img/webicons))/",
+      "html": "<[^>]+/(?:sys_master|hybr|_ui/(?:responsive/)?(?:desktop|common(?:/images|/img)?))/",
       "icon": "Hybris.png",
       "implies": "Java",
       "website": "https://hybris.com"
@@ -5026,6 +5052,17 @@
       "implies": "PHP",
       "website": "http://laravel.com"
     },
+    "Laterpay": {
+      "cats": [
+        "41"
+      ],
+      "meta": {
+        "laterpay:connector:callbacks:on_user_has_access": "deobfuscateText"
+      },
+      "script": "https?://connectormwi\\.laterpay\\.net/([0-9.]+)[a-zA-z\\-]*/live/[\\w-]+\\.js\\;version:\\1",
+      "icon": "laterpay.png",
+      "website": "https://www.laterpay.net/"
+    },
     "MYPAGE Platform": {
       "cats": [
         "1",
@@ -5035,7 +5072,7 @@
         "Set-Cookie": "botble_session"
       },
       "icon": "mypage-platform.png",
-      "implies": "laravel",
+      "implies": "Laravel",
       "website": "https://www.mypage.vn"
     },
     "Lazy.js": {
@@ -5321,7 +5358,7 @@
         "27"
       ],
       "headers": {
-        "X-Powered-By": "\bLua(?: ([\\d.]+))?\\;version:\\1"
+        "X-Powered-By": "\\bLua(?: ([\\d.]+))?\\;version:\\1"
       },
       "icon": "Lua.png",
       "website": "http://www.lua.org"
@@ -5614,7 +5651,7 @@
       "implies": [
         "MongoDB",
         "Express",
-        "AngularJS"
+        "Angular"
       ],
       "website": "http://mean.io"
     },
@@ -5834,7 +5871,7 @@
       "cats": [
         "2"
       ],
-      "html": "<a href=\"[^\"]+minibb[^<]+</a>[^<]+\n<!--End of copyright link",
+      "html": "<a href=\"[^\"]+minibb[^<]+</a>[^<]+\\n<!--End of copyright link",
       "icon": "MiniBB.png",
       "website": "http://www.minibb.com"
     },
@@ -6110,7 +6147,7 @@
       "icon": "MotoCMS.svg",
       "implies": [
         "PHP",
-        "AngularJS",
+        "Angular",
         "jQuery"
       ],
       "script": ".*\\/mt-includes\\/[asetj]{2,6}\\/.*\\.js.*",
@@ -6578,7 +6615,7 @@
         "50"
       ],
       "headers": {
-        "Set-Cookie": "\bOJSSID\b"
+        "Set-Cookie": "\\bOJSSID\\b"
       },
       "icon": "Open Journal Systems.png",
       "implies": "PHP",
@@ -7074,7 +7111,7 @@
         "27"
       ],
       "headers": {
-        "Server": "\bPerl\b(?: ?/?v?([\\d.]+))?\\;version:\\1"
+        "Server": "\\bPerl\\b(?: ?/?v?([\\d.]+))?\\;version:\\1"
       },
       "icon": "Perl.png",
       "website": "http://perl.org"
@@ -7474,7 +7511,7 @@
       "icon": "Proximis Omnichannel.png",
       "implies": [
         "PHP",
-        "AngularJS"
+        "Angular"
       ],
       "meta": {
         "generator": "Proximis Omnichannel"
@@ -7748,7 +7785,7 @@
       },
       "icon": "Rayo.png",
       "implies": [
-        "AngularJS",
+        "Angular",
         "Microsoft ASP.NET"
       ],
       "meta": {
@@ -7806,6 +7843,9 @@
       "cats": [
         "13"
       ],
+      "headers": {
+        "Set-Cookie": "^_redmine_session"
+      },
       "html": "Powered by <a href=\"[^>]+Redmine",
       "icon": "Redmine.png",
       "implies": "Ruby on Rails",
@@ -8237,26 +8277,6 @@
       "icon": "Scala.png",
       "website": "http://www.scala-lang.org"
     },
-    "Schneider": {
-      "cats": [
-        "45"
-      ],
-      "icon": "Schneider.png",
-      "website": "http://schneider-electric.com"
-    },
-    "Schneider Web Server": {
-      "cats": [
-        "22"
-      ],
-      "headers": {
-        "Server": "Schneider-WEB(?:/V?([\\d.]+))?\\;version:\\1"
-      },
-      "icon": "Schneider.png",
-      "implies": [
-        "Schneider"
-      ],
-      "website": "http://schneider-electric.com"
-    },
     "Scholica": {
       "cats": [
         "21"
@@ -8488,6 +8508,19 @@
         "Elcodi"
       ],
       "website": "http://shopery.com"
+    },
+    "Shopfa": {
+      "cats": [
+        "6"
+      ],
+      "js": {
+        "shopfa": ""
+       },
+      "meta": {
+        "generator": "^ShopFA ([\\d.]+)$\\;version:\\1"
+      },
+      "icon": "Shopfa.svg",
+      "website": "https://shopfa.com"
     },
     "Shopify": {
       "cats": [
@@ -9170,8 +9203,8 @@
       "excludes": "SweetAlert",
       "html": "<link[^>]+?href=\"[^\"]+sweetalert2(?:\\.min)?\\.css",
       "icon": "SweetAlert2.png",
-      "script": "sweetalert2(?:\\.min)?\\.js",
-      "website": "https://limonte.github.io/sweetalert2"
+      "script": "sweetalert2(?:\\.all)?(?:\\.min)?\\.js",
+      "website": "https://sweetalert2.github.io/"
     },
     "Swiftlet": {
       "cats": [
@@ -9269,7 +9302,7 @@
       "icon": "Taiga.png",
       "implies": [
         "Django",
-        "AngularJS"
+        "Angular"
       ],
       "website": "http://taiga.io"
     },
@@ -9542,6 +9575,16 @@
       "icon": "TrackJs.png",
       "script": "tracker\\.js",
       "website": "http://trackjs.com"
+    },
+    "Transifex": {
+      "cats": [
+        "12"
+      ],
+      "icon": "transifex.png",
+      "js": {
+        "Transifex.live.lib_version": "(.+)\\;version:\\1"
+      },
+      "website": "https://www.transifex.com"
     },
     "Translucide": {
       "cats": [
@@ -10118,14 +10161,6 @@
       "script": "/volusion\\.js(?:\\?([\\d.]*))?\\;version:\\1",
       "website": "http://volusion.com"
     },
-    "Vox": {
-      "cats": [
-        "11"
-      ],
-      "icon": "Vox.png",
-      "url": "\\.vox\\.com",
-      "website": "http://www.vox.com"
-    },
     "Vue.js": {
       "cats": [
         "12"
@@ -10133,6 +10168,7 @@
       "js": {
         "Vue": ""
       },
+      "html": "<[^>]+data-v-",
       "icon": "Vue.js.png",
       "script": [
         "vue(?:\\-|\\.)([\\d.]*\\d)[^/]*\\.js\\;version:\\1",
@@ -10263,7 +10299,7 @@
         "webix": ""
       },
       "icon": "Webix.png",
-      "script": "\bwebix\\.js",
+      "script": "\\bwebix\\.js",
       "website": "http://webix.com"
     },
     "Webs": {
@@ -10385,7 +10421,7 @@
         "28"
       ],
       "headers": {
-        "Server": "\bWinCE\b"
+        "Server": "\\bWinCE\\b"
       },
       "icon": "Microsoft.svg",
       "website": "http://microsoft.com"
@@ -10901,7 +10937,7 @@
       ],
       "headers": {
         "Set-Cookie": "ZENDSERVERSESSID",
-        "X-Powered-By": "Zend"
+        "X-Powered-By": "Zend(?:Server)?(?:[\\s/]?([0-9.]+))?\\;version:\\1"
       },
       "icon": "Zend.png",
       "website": "http://zend.com"
@@ -11093,7 +11129,7 @@
         "22"
       ],
       "headers": {
-        "Server": "\beHTTP(?: v?([\\d\\.]+))?\\;version:\\1"
+        "Server": "\\beHTTP(?: v?([\\d\\.]+))?\\;version:\\1"
       },
       "implies": "HP ProCurve",
       "website": "http://example.com"
@@ -11150,7 +11186,7 @@
       ],
       "icon": "git.svg",
       "meta": {
-        "generator": "\bgit/([\\d.]+\\d)\\;version:\\1"
+        "generator": "\\bgit/([\\d.]+\\d)\\;version:\\1"
       },
       "website": "http://git-scm.com"
     },
@@ -11312,6 +11348,9 @@
       "cats": [
         "12"
       ],
+      "js": {
+        "jQuery.migrateVersion": "([\\d.]+)\\;version:\\1"
+      },
       "icon": "jQuery.svg",
       "implies": "jQuery",
       "script": "jquery.migrate(?:-([\\d.]+rc\\d))?.*\\.js(?:\\?ver=([\\d.]+))?\\;version:\\1?\\1:\\2",
@@ -11423,7 +11462,7 @@
         "33"
       ],
       "headers": {
-        "Server": "\b(?:mod_)?DAV\b(?:/([\\d.]+))?\\;version:\\1"
+        "Server": "\\b(?:mod_)?DAV\\b(?:/([\\d.]+))?\\;version:\\1"
       },
       "icon": "Apache.svg",
       "implies": "Apache",
@@ -11651,7 +11690,7 @@
       "headers": {
         "Set-Cookie": "^phpbb"
       },
-      "html": "(?:Powered by <a[^>]+phpbb|<a[^>]+phpbb[^>]+class=\\.copyright|\tphpBB style name|<[^>]+styles/(?:sub|pro)silver/theme|<img[^>]+i_icon_mini|<table class=\"forumline)",
+      "html": "(?:Powered by <a[^>]+phpbb|<a[^>]+phpbb[^>]+class=\\.copyright|\\tphpBB style name|<[^>]+styles/(?:sub|pro)silver/theme|<img[^>]+i_icon_mini|<table class=\"forumline)",
       "icon": "phpBB.png",
       "implies": "PHP",
       "meta": {
@@ -11809,7 +11848,7 @@
         "Scriptaculous": ""
       },
       "icon": "script.aculo.us.png",
-      "script": "(?:scriptaculous|protoaculous)\\.js",
+      "script": "/(?:scriptaculous|protoaculous)(?:\\.js|/)",
       "website": "http://script.aculo.us"
     },
     "shine.js": {
@@ -11848,7 +11887,7 @@
         "22"
       ],
       "headers": {
-        "Server": "\bthttpd(?:/([\\d.]+))?\\;version:\\1"
+        "Server": "\\bthttpd(?:/([\\d.]+))?\\;version:\\1"
       },
       "icon": "thttpd.png",
       "website": "http://acme.com/software/thttpd"
@@ -11908,7 +11947,7 @@
       "icon": "vBulletin.png",
       "implies": "PHP",
       "meta": {
-        "generator": "vBulletin"
+        "generator": "vBulletin ?([\\d.]+)?\\;version:\\1"
       },
       "website": "http://www.vbulletin.com"
     },
@@ -12149,7 +12188,7 @@
     },
     "3": {
       "name": "Database Managers",
-      "priority": "4"
+      "priority": "2"
     },
     "4": {
       "name": "Documentation Tools",
@@ -12185,7 +12224,7 @@
     },
     "12": {
       "name": "JavaScript Frameworks",
-      "priority": "3"
+      "priority": "5"
     },
     "13": {
       "name": "Issue Trackers",
@@ -12193,7 +12232,7 @@
     },
     "14": {
       "name": "Video Players",
-      "priority": "9"
+      "priority": "7"
     },
     "15": {
       "name": "Comment Systems",
@@ -12209,7 +12248,7 @@
     },
     "18": {
       "name": "Web Frameworks",
-      "priority": "2"
+      "priority": "4"
     },
     "19": {
       "name": "Miscellaneous",
@@ -12217,7 +12256,7 @@
     },
     "20": {
       "name": "Editors",
-      "priority": "9"
+      "priority": "4"
     },
     "21": {
       "name": "LMS",
@@ -12225,7 +12264,7 @@
     },
     "22": {
       "name": "Web Servers",
-      "priority": "9"
+      "priority": "7"
     },
     "23": {
       "name": "Cache Tools",
@@ -12233,7 +12272,7 @@
     },
     "24": {
       "name": "Rich Text Editors",
-      "priority": "9"
+      "priority": "5"
     },
     "25": {
       "name": "JavaScript Graphics",
@@ -12253,11 +12292,11 @@
     },
     "29": {
       "name": "Search Engines",
-      "priority": "9"
+      "priority": "4"
     },
     "30": {
       "name": "Web Mail",
-      "priority": "9"
+      "priority": "2"
     },
     "31": {
       "name": "CDN",
@@ -12269,11 +12308,11 @@
     },
     "33": {
       "name": "Web Server Extensions",
-      "priority": "9"
+      "priority": "7"
     },
     "34": {
       "name": "Databases",
-      "priority": "9"
+      "priority": "5"
     },
     "35": {
       "name": "Maps",
@@ -12301,7 +12340,7 @@
     },
     "41": {
       "name": "Payment Processors",
-      "priority": "9"
+      "priority": "8"
     },
     "42": {
       "name": "Tag Managers",
@@ -12313,19 +12352,19 @@
     },
     "44": {
       "name": "Build CI Systems",
-      "priority": "9"
+      "priority": "4"
     },
     "45": {
       "name": "Control Systems",
-      "priority": "9"
+      "priority": "8"
     },
     "46": {
       "name": "Remote Access",
-      "priority": "9"
+      "priority": "8"
     },
     "47": {
       "name": "Dev Tools",
-      "priority": "9"
+      "priority": "3"
     },
     "48": {
       "name": "Network Storage",
@@ -12349,11 +12388,11 @@
     },
     "53": {
       "name": "CRM",
-      "priority": "9"
+      "priority": "7"
     },
     "54": {
       "name": "SEO",
-      "priority": "9"
+      "priority": "7"
     },
     "55": {
       "name": "Accounting",
